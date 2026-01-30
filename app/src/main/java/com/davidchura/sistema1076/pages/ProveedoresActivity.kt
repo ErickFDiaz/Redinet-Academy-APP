@@ -16,12 +16,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -38,23 +36,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.davidchura.sistema1076.R
 import com.davidchura.sistema1076.model.Proveedor
-import com.davidchura.sistema1076.ui.theme.Color1
-import com.davidchura.sistema1076.ui.theme.Color2
-import com.davidchura.sistema1076.ui.theme.Color3
-import com.davidchura.sistema1076.ui.theme.Color4
+import com.davidchura.sistema1076.ui.theme.NeutralDisabled
+import com.davidchura.sistema1076.ui.theme.PrimaryMain
 import com.davidchura.sistema1076.ui.theme.Sistema1076Theme
 import com.davidchura.sistema1076.ui.theme.dimens
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-interface ProveedoresService{
-    @GET("proveedores.php")
-    suspend fun getProveedores(): List<Proveedor>
+interface ProveedoresService {
+    @GET("proveedores.php") suspend fun getProveedores(): List<Proveedor>
 }
 
 class ProveedoresActivity : ComponentActivity() {
@@ -62,42 +56,53 @@ class ProveedoresActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val api = Retrofit.Builder()
-            .baseUrl("https://servicios.campus.pe/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ProveedoresService::class.java)
+        val api =
+                Retrofit.Builder()
+                        .baseUrl("https://servicios.campus.pe/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build()
+                        .create(ProveedoresService::class.java)
 
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.light(
-                scrim = Color2.toArgb(),
-                darkScrim = Color2.toArgb(),
-            )
+                statusBarStyle =
+                        SystemBarStyle.light(
+                                scrim = PrimaryMain.toArgb(),
+                                darkScrim = PrimaryMain.toArgb(),
+                        )
         )
         setContent {
             Sistema1076Theme {
-                Scaffold(modifier = Modifier.fillMaxSize(),
-                    topBar = {
-                        TopAppBar(
-                            title = {Text(stringResource(R.string.title_activity_proveedores))},
-                            navigationIcon = {
-                                IconButton(onClick = { finish() }) {
-                                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, null)
-                                }
-                            },
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.surface, // Color de fondo
-                                titleContentColor = Color.White,    // Color del título
-                                navigationIconContentColor = Color.White // Color del icono
+                Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        topBar = {
+                            TopAppBar(
+                                    title = {
+                                        Text(stringResource(R.string.title_activity_proveedores))
+                                    },
+                                    navigationIcon = {
+                                        IconButton(onClick = { finish() }) {
+                                            Icon(
+                                                    imageVector =
+                                                            Icons.AutoMirrored.Filled.ArrowBack,
+                                                    null
+                                            )
+                                        }
+                                    },
+                                    colors =
+                                            TopAppBarDefaults.topAppBarColors(
+                                                    containerColor =
+                                                            MaterialTheme.colorScheme
+                                                                    .surface, // Color de fondo
+                                                    titleContentColor =
+                                                            Color.White, // Color del título
+                                                    navigationIconContentColor =
+                                                            Color.White // Color del icono
+                                            )
                             )
-                        )
-
-                    })
-                { innerPadding ->
+                        }
+                ) { innerPadding ->
                     var isLoading by remember { mutableStateOf(true) }
-                    var listaProveedores by remember {
-                        mutableStateOf<List<Proveedor>?>(null)
-                    }
+                    var listaProveedores by remember { mutableStateOf<List<Proveedor>?>(null) }
                     LaunchedEffect(key1 = Unit) {
                         listaProveedores = api.getProveedores()
                         isLoading = false
@@ -108,13 +113,14 @@ class ProveedoresActivity : ComponentActivity() {
                             stringResource(R.string.title_activity_proveedores),
                             style = MaterialTheme.typography.headlineLarge
                         )*/
-                        Box(modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center) {
-                            if(isLoading) {
-                                //LinearProgressIndicator()
+                        Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                        ) {
+                            if (isLoading) {
+                                // LinearProgressIndicator()
                                 CircularProgressIndicator()
-                            }
-                            else{
+                            } else {
                                 LazyColumn {
                                     /*
                                     items(listaProveedores!!.size){
@@ -123,9 +129,7 @@ class ProveedoresActivity : ComponentActivity() {
                                         Text(text = listaProveedores!![it].cargocontacto)
                                     }
                                      */
-                                    items(items = listaProveedores!!){
-                                        DibujarProveedor(it)
-                                    }
+                                    items(items = listaProveedores!!) { DibujarProveedor(it) }
                                 }
                             }
                         }
@@ -135,16 +139,20 @@ class ProveedoresActivity : ComponentActivity() {
         }
     }
 }
+
 @Composable
-fun DibujarProveedor(itemProveedor: Proveedor){
-    Column(modifier = Modifier.fillMaxWidth()
-        .padding(MaterialTheme.dimens.small)
-        .border(BorderStroke(1.dp, Color3))
-        .padding(MaterialTheme.dimens.medium)){
+fun DibujarProveedor(itemProveedor: Proveedor) {
+    Column(
+            modifier =
+                    Modifier.fillMaxWidth()
+                            .padding(MaterialTheme.dimens.small)
+                            .border(BorderStroke(1.dp, NeutralDisabled))
+                            .padding(MaterialTheme.dimens.medium)
+    ) {
         Text(
-            text = itemProveedor.nombreempresa,
-            style = MaterialTheme.typography.titleLarge,
-            color = Color4
+                text = itemProveedor.nombreempresa,
+                style = MaterialTheme.typography.titleLarge,
+                color = PrimaryMain
         )
         Text(text = itemProveedor.nombrecontacto)
         Text(text = itemProveedor.cargocontacto)

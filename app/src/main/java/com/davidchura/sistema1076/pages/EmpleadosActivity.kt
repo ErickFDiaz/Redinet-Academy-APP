@@ -34,64 +34,71 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
 import com.davidchura.sistema1076.model.Empleado
-import com.davidchura.sistema1076.ui.theme.Color4
+import com.davidchura.sistema1076.ui.theme.PrimaryLighter
+import com.davidchura.sistema1076.ui.theme.PrimaryMain
 import com.davidchura.sistema1076.ui.theme.Sistema1076Theme
 import com.davidchura.sistema1076.ui.theme.dimens
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-interface EmpleadosService{
-    @GET("empleados.php")
-    suspend fun getEmpleados(): List<Empleado>
+interface EmpleadosService {
+    @GET("empleados.php") suspend fun getEmpleados(): List<Empleado>
 }
 
 class EmpleadosActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val api = Retrofit.Builder()
-            .baseUrl("https://servicios.campus.pe/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(EmpleadosService::class.java)
+        val api =
+                Retrofit.Builder()
+                        .baseUrl("https://servicios.campus.pe/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build()
+                        .create(EmpleadosService::class.java)
         enableEdgeToEdge()
         setContent {
             Sistema1076Theme {
-                Scaffold(modifier = Modifier.fillMaxSize(),
-                    topBar = {
-                        TopAppBar(
-                            title = {  },
-                            navigationIcon = {
-                                IconButton(onClick = { finish() }) {
-                                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, null)
-                                }
-                            },
-
-                        )
-
-                    }) { innerPadding ->
+                Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        topBar = {
+                            TopAppBar(
+                                    title = {},
+                                    navigationIcon = {
+                                        IconButton(onClick = { finish() }) {
+                                            Icon(
+                                                    imageVector =
+                                                            Icons.AutoMirrored.Filled.ArrowBack,
+                                                    null
+                                            )
+                                        }
+                                    },
+                            )
+                        }
+                ) { innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
                         var isLoading by remember { mutableStateOf(true) }
-                        var listaEmpleados by remember {
-                            mutableStateOf<List<Empleado>?>(null)
-                        }
+                        var listaEmpleados by remember { mutableStateOf<List<Empleado>?>(null) }
 
                         LaunchedEffect(key1 = Unit) {
                             listaEmpleados = api.getEmpleados()
                             isLoading = false
                         }
 
-                        Box(modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center) {
-                            if(isLoading) {
-                                //LinearProgressIndicator()
+                        Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                        ) {
+                            if (isLoading) {
+                                // LinearProgressIndicator()
                                 CircularProgressIndicator()
-                            }
-                            else{
+                            } else {
                                 LazyRow() {
-                                    items(items = listaEmpleados!!){ empleado ->
-                                        DibujarEmpleado(empleado, modifier = Modifier.fillParentMaxSize())
+                                    items(items = listaEmpleados!!) { empleado ->
+                                        DibujarEmpleado(
+                                                empleado,
+                                                modifier = Modifier.fillParentMaxSize()
+                                        )
                                     }
                                 }
                             }
@@ -102,46 +109,52 @@ class EmpleadosActivity : ComponentActivity() {
         }
     }
 }
+
 @Composable
 fun DibujarEmpleado(empleado: Empleado, modifier: Modifier) {
     Box(modifier = modifier, contentAlignment = Alignment.BottomStart) {
-    AsyncImage(
-        model = "https://servicios.campus.pe/" + empleado.foto,
-        contentDescription = null,
-        modifier = Modifier.fillMaxSize(),
-        contentScale = ContentScale.Crop
-    )
+        AsyncImage(
+                model = "https://servicios.campus.pe/" + empleado.foto,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+        )
         Box(
-            modifier = Modifier
-                .matchParentSize()
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.Black.copy(alpha = 0.7f)
-                        )
-                    )
-                )
+                modifier =
+                        Modifier.matchParentSize()
+                                .background(
+                                        Brush.verticalGradient(
+                                                colors =
+                                                        listOf(
+                                                                Color.Transparent,
+                                                                Color.Black.copy(alpha = 0.7f)
+                                                        )
+                                        )
+                                )
         )
 
         Column(modifier = Modifier.padding(MaterialTheme.dimens.medium)) {
             Text(
-                text = empleado.nombres + " " + empleado.apellidos,
-                style = MaterialTheme.typography.titleLarge,
-                color = Color4,
-                modifier = Modifier
-                    .background(Color.Black)
-                    .padding(
-                        MaterialTheme.dimens.medium, MaterialTheme.dimens.extraSmall
-                    )
+                    text = empleado.nombres + " " + empleado.apellidos,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = PrimaryMain,
+                    modifier =
+                            Modifier.background(Color.Black)
+                                    .padding(
+                                            MaterialTheme.dimens.medium,
+                                            MaterialTheme.dimens.extraSmall
+                                    )
             )
-            Text(text = empleado.cargo,
-                color = Color.Black,
-                modifier = Modifier
-                    .background(Color4)
-                    .padding(
-                        MaterialTheme.dimens.medium, MaterialTheme.dimens.extraSmall
-                    ))
+            Text(
+                    text = empleado.cargo,
+                    color = Color.Black,
+                    modifier =
+                            Modifier.background(PrimaryLighter)
+                                    .padding(
+                                            MaterialTheme.dimens.medium,
+                                            MaterialTheme.dimens.extraSmall
+                                    )
+            )
         }
     }
 }
