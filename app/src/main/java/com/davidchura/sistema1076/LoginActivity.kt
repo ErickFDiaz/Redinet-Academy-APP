@@ -77,7 +77,7 @@ fun LoginScreen(onLoginClick: () -> Unit, onRegisterClick: () -> Unit) {
         ) {
                 // Logo
                 Image(
-                        painter = painterResource(id = R.drawable.inlearnin),
+                        painter = painterResource(id = R.drawable.logo_academy),
                         contentDescription = "Logo",
                         contentScale = ContentScale.Inside,
                         modifier = Modifier.height(150.dp).fillMaxWidth().padding(bottom = 32.dp)

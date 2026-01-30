@@ -81,7 +81,7 @@ class IntroActivity : ComponentActivity() {
                                         verticalArrangement = Arrangement.Center
                                 ) {
                                         Image(
-                                                painterResource(R.drawable.inlearnin),
+                                                painterResource(R.drawable.icono_academy),
                                                 contentDescription =
                                                         stringResource(R.string.texto_logo),
                                                 modifier =
