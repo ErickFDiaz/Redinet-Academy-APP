@@ -89,4 +89,10 @@
     <string name="onboarding_skip">Skip</string>
     <string name="onboarding_next">Next</string>
     <string name="title_activity_onboarding">Onboarding</string>
+    <string name="login_title">Log in</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="register_prompt">Don’t have any account? Register</string>
+    <string name="title_activity_login">Login</string>
 </resources>

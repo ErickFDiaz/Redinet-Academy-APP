@@ -62,7 +62,7 @@ class OnboardingActivity : ComponentActivity() {
         }
 
         private fun navigateToMain() {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
         }
 }
