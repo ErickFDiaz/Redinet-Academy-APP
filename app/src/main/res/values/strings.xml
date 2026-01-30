@@ -78,8 +78,13 @@
     <string name="title_activity_directores">Directores</string>
     <string name="title_activity_clientes">Clientes</string>
     <string name="title_activity_intro">IntroActivity</string>
-    <string name="onboarding_title">Education is the best learn ever</string>
-    <string name="onboarding_description">It is a long established fact that a reader will be
+    <string name="onboarding_title_1">Learn anytime, anywhere</string>
+    <string name="onboarding_description_1">Access course content on your mobile device.</string>
+    <string name="onboarding_title_2">Education is the best learn ever</string>
+    <string name="onboarding_description_2">It is a long established fact that a reader will be
+        distracted by the readable content of a page when looking at its layout.</string>
+    <string name="onboarding_title_3">Education is the best learn ever</string>
+    <string name="onboarding_description_3">It is a long established fact that a reader will be
         distracted by the readable content of a page when looking at its layout.</string>
     <string name="onboarding_skip">Skip</string>
     <string name="onboarding_next">Next</string>
