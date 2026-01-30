@@ -34,57 +34,73 @@ import com.davidchura.sistema1076.ui.theme.Sistema1076Theme
 import kotlinx.coroutines.delay
 
 class IntroActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            var startAnimation by remember { mutableStateOf(false) }
-            val offsetY by
-                    animateDpAsState(
-                            targetValue = if (startAnimation) 0.dp else (1500).dp,
-                            animationSpec = tween(durationMillis = 1000),
-                    )
-            val scale by
-                    animateFloatAsState(
-                            targetValue = if (startAnimation) 1f else 3f,
-                            animationSpec = tween(durationMillis = 2000)
-                    )
-            val alpha by
-                    animateFloatAsState(
-                            targetValue = if (startAnimation) 1f else 0f,
-                            animationSpec = tween(durationMillis = 3000)
-                    )
-            Sistema1076Theme {
-                LaunchedEffect(key1 = true) {
-                    startAnimation = true
-                    delay(3000)
-                    startActivity(Intent(this@IntroActivity, MainActivity::class.java))
-                }
-                Column(
-                        modifier =
-                                Modifier.fillMaxSize()
-                                        .background(
-                                                Brush.linearGradient(
-                                                        colors = listOf(GradientStart, GradientEnd)
+        override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                enableEdgeToEdge()
+                setContent {
+                        var startAnimation by remember { mutableStateOf(false) }
+                        val offsetY by
+                                animateDpAsState(
+                                        targetValue = if (startAnimation) 0.dp else (1500).dp,
+                                        animationSpec = tween(durationMillis = 1000),
+                                )
+                        val scale by
+                                animateFloatAsState(
+                                        targetValue = if (startAnimation) 1f else 3f,
+                                        animationSpec = tween(durationMillis = 2000)
+                                )
+                        val alpha by
+                                animateFloatAsState(
+                                        targetValue = if (startAnimation) 1f else 0f,
+                                        animationSpec = tween(durationMillis = 3000)
+                                )
+                        Sistema1076Theme {
+                                LaunchedEffect(key1 = true) {
+                                        startAnimation = true
+                                        delay(3000)
+                                        startActivity(
+                                                Intent(
+                                                        this@IntroActivity,
+                                                        OnboardingActivity::class.java
                                                 )
-                                        ),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                ) {
-                    Image(
-                            painterResource(R.drawable.inlearnin),
-                            contentDescription = stringResource(R.string.texto_logo),
-                            modifier =
-                                    Modifier.height(240.dp)
-                                            .offset { IntOffset(0, offsetY.value.toInt()) }
-                                            .graphicsLayer(
-                                                    scaleX = scale,
-                                                    scaleY = scale,
-                                                    alpha = alpha
-                                            )
-                    )
+                                        )
+                                }
+                                Column(
+                                        modifier =
+                                                Modifier.fillMaxSize()
+                                                        .background(
+                                                                Brush.linearGradient(
+                                                                        colors =
+                                                                                listOf(
+                                                                                        GradientStart,
+                                                                                        GradientEnd
+                                                                                )
+                                                                )
+                                                        ),
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalArrangement = Arrangement.Center
+                                ) {
+                                        Image(
+                                                painterResource(R.drawable.inlearnin),
+                                                contentDescription =
+                                                        stringResource(R.string.texto_logo),
+                                                modifier =
+                                                        Modifier.height(240.dp)
+                                                                .offset {
+                                                                        IntOffset(
+                                                                                0,
+                                                                                offsetY.value
+                                                                                        .toInt()
+                                                                        )
+                                                                }
+                                                                .graphicsLayer(
+                                                                        scaleX = scale,
+                                                                        scaleY = scale,
+                                                                        alpha = alpha
+                                                                )
+                                        )
+                                }
+                        }
                 }
-            }
         }
-    }
 }

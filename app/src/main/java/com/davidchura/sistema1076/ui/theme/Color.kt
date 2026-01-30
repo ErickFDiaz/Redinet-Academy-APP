@@ -46,3 +46,7 @@ val DarkMid = Color(0xFF30373D)
 val DarkDarkest = Color(0xFF151B22)
 val DarkLight = Color(0xFF484F58)
 val Nav = Color(0xFFC9D1D9)
+
+// Onboarding Colors
+val OnboardingStart = Color(0xFFDEE9FF)
+val OnboardingEnd = Color(0xFFFFFFFF)
