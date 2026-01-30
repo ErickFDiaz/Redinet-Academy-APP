@@ -46,7 +46,7 @@ class IntroActivity : ComponentActivity() {
                                 )
                         val scale by
                                 animateFloatAsState(
-                                        targetValue = if (startAnimation) 1f else 3f,
+                                        targetValue = if (startAnimation) 2f else 3f,
                                         animationSpec = tween(durationMillis = 2000)
                                 )
                         val alpha by
