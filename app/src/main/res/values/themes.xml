@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Sistema1076" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="android:windowSplashScreenBackground">#FFF7CD82</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/inlearnin_splash</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

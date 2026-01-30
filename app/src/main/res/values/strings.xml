@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Alfa</string>
+    <string name="frase">Vine ví y vencí</string>
+    <string name="autor">Julio César</string>
+    <string name="texto_logo">Logo empresa</string>
+    <string name="saludo">Hola</string>
+    <string name="empezar">Empezar</string>
+    <string name="derechos">Todos los derechos reservados</string>
+    <string name="title_activity_empezar">EmpezarActivity</string>
+    <string name="empezar_texto">Descubre ofertas exclusivas, compra rápido y seguro, recibe notificaciones personalizadas y ahorra tiempo desde tu móvil, explorando nuestro catálogo completo, pagando fácil y disfrutando promociones diarias pensadas para ti con soporte atento y entregas confiables siempre.</string>
+    <string name="title_activity_terminos">Términos y condiciones</string>
+    <string name="title_activity_inicio">Inicio</string>
+    <string name="terminos_texto">
+Al descargar, acceder o utilizar nuestra aplicación móvil, usted acepta estar legalmente vinculado por estos Términos y Condiciones en su totalidad, reconociendo que constituyen un acuerdo vinculante entre usted y nuestra empresa. Si no está de acuerdo con alguna parte de estos términos, debe abstenerse de utilizar la aplicación y eliminarla de su dispositivo inmediatamente. Nos reservamos el derecho exclusivo de actualizar o modificar estos términos en cualquier momento sin previo aviso, y el uso continuo de la aplicación después de dichas modificaciones constituirá su aceptación plena de los cambios realizados.
+\n\n
+Para acceder a ciertas funciones, como realizar compras, rastrear pedidos o guardar favoritos, es posible que deba crear una cuenta proporcionando información veraz, exacta y actual según se solicite en el formulario de registro. Usted es el único responsable de mantener la confidencialidad de sus credenciales de acceso y de todas las actividades que ocurran bajo su cuenta, ya sea con o sin su conocimiento. Debe notificarnos de inmediato sobre cualquier uso no autorizado o brecha de seguridad; no nos hacemos responsables por pérdidas o daños derivados del incumplimiento de esta obligación de seguridad.
+\n\n
+Nos esforzamos por mostrar los colores, características y especificaciones de nuestros productos con la mayor precisión posible; sin embargo, no garantizamos que la visualización en su dispositivo sea exacta debido a las variaciones técnicas de las pantallas. Nos reservamos el derecho de modificar los precios, descripciones y disponibilidad de los productos en cualquier momento y sin previo aviso. En el caso de que un producto aparezca con un precio incorrecto debido a un error tipográfico o de sistema, nos reservamos el derecho de rechazar o cancelar cualquier pedido realizado bajo dicho precio incorrecto, incluso si el pedido ha sido confirmado.
+\n\n
+Todos los pagos se procesan a través de pasarelas de pago de terceros seguras y encriptadas para proteger su información financiera. Al realizar una compra, usted confirma que está plenamente autorizado a utilizar el método de pago proporcionado y que hay fondos suficientes para cubrir el costo de la transacción. El cobro se realizará en el momento de confirmar la orden o según lo permitan las normativas vigentes. Nos reservamos el derecho de rechazar cualquier pedido o limitar las cantidades compradas por persona, por hogar o por pedido según nuestro criterio exclusivo.
+\n\n
+Los tiempos de envío indicados en la aplicación son estimaciones basadas en condiciones normales y pueden variar debido a factores externos, logísticos o de fuerza mayor fuera de nuestro control razonable. La propiedad y el riesgo de pérdida de los productos se transfieren a usted en el momento de la entrega al transportista encargado del despacho. Las devoluciones y reembolsos están estrictamente sujetos a nuestra Política de Devoluciones vigente, la cual requiere que los productos estén en su estado original y se reporten dentro del plazo establecido tras la recepción para ser elegibles.
+\n\n
+Todo el contenido incluido en la aplicación, incluyendo pero no limitado a texto, gráficos, logotipos, interfaces, imágenes, clips de audio, descargas digitales y compilaciones de datos, es propiedad exclusiva de nuestra empresa o de sus proveedores de contenido y está protegido por las leyes de propiedad intelectual nacionales e internacionales. Está estrictamente prohibido el uso, reproducción, duplicación, copia, venta, reventa o explotación de cualquier parte del servicio o contenido de esta aplicación sin nuestro consentimiento expreso y por escrito.
+\n\n
+La aplicación y los servicios se proporcionan "tal cual" y "según disponibilidad", sin garantías de ningún tipo, ya sean expresas o implícitas. En la medida máxima permitida por la ley aplicable, no seremos responsables por daños directos, indirectos, incidentales, punitivos o consecuentes que resulten del uso o la imposibilidad de uso de la aplicación. Estos términos se regirán e interpretarán de acuerdo con las leyes del país donde opera nuestra sede principal, y cualquier disputa relacionada con estos términos se someterá a la jurisdicción exclusiva de los tribunales competentes de dicha localidad.
+    </string>
+    <string name="cerrar">Cerrar</string>
+    <string name="title_activity_proveedores">Proveedores</string>
+    <string name="title_activity_empleados">Empleados</string>
+    <string name="title_activity_tienda">Tienda</string>
+    <string name="title_activity_directores">Directores</string>
+    <string name="title_activity_clientes">Clientes</string>
+    <string name="title_activity_intro">IntroActivity</string>
+</resources>
