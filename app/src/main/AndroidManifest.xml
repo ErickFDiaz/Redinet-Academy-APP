@@ -23,6 +23,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".pages.PedidosActivity"
+            android:exported="false"
+            android:label="@string/title_activity_pedidos"
+            android:theme="@style/Theme.Sistema1076" />
+        <activity
             android:name=".pages.ClientesActivity"
             android:exported="false"
             android:label="@string/title_activity_clientes"

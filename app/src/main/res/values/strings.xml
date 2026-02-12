@@ -77,6 +77,7 @@
     <string name="title_activity_tienda">Tienda</string>
     <string name="title_activity_directores">Directores</string>
     <string name="title_activity_clientes">Clientes</string>
+    <string name="title_activity_pedidos">Pedidos</string>
     <string name="title_activity_intro">IntroActivity</string>
     <string name="onboarding_title_1">Learn anytime, anywhere</string>
     <string name="onboarding_description_1">Access course content on your mobile device.</string>
