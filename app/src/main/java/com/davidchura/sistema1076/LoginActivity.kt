@@ -51,7 +51,7 @@ class LoginActivity : ComponentActivity() {
                                 LoginScreen(
                                         onLoginClick = {
                                                 startActivity(
-                                                        Intent(this, MainActivity::class.java)
+                                                        Intent(this, InicioActivity::class.java)
                                                 )
                                                 finish()
                                         },
