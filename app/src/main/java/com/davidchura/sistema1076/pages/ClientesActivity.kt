@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -86,27 +87,50 @@ fun ClienteItem(cliente: Cliente, index: Int) {
     val gradients =
             listOf(
                     Brush.linearGradient(
-                            colors = listOf(Color(0xFF536DFE), Color(0xFFC5CAE9)) // Blue/Purple
+                            colors =
+                                    listOf(
+                                            Color(0xFF536DFE),
+                                            Color(0xFF303F9F)
+                                    ) // Blue -> Dark Blue
                     ),
                     Brush.linearGradient(
-                            colors = listOf(Color(0xFFFF7043), Color(0xFFFFCCBC)) // Orange/Peach
+                            colors =
+                                    listOf(
+                                            Color(0xFFFF7043),
+                                            Color(0xFFD84315)
+                                    ) // Orange -> Dark Orange
                     ),
                     Brush.linearGradient(
-                            colors = listOf(Color(0xFF26A69A), Color(0xFFB2DFDB)) // Teal/Green
+                            colors =
+                                    listOf(
+                                            Color(0xFF26A69A),
+                                            Color(0xFF00796B)
+                                    ) // Teal -> Dark Teal
                     ),
                     Brush.linearGradient(
-                            colors = listOf(Color(0xFFFFA726), Color(0xFFFFE0B2)) // Amber
+                            colors =
+                                    listOf(
+                                            Color(0xFFFFA726),
+                                            Color(0xFFEF6C00)
+                                    ) // Amber -> Dark Amber
                     )
             )
 
     val currentGradient = gradients[index % gradients.size]
 
     Card(
-            modifier = Modifier.fillMaxWidth().heightIn(min = 180.dp),
+            modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(16.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
-        Box(modifier = Modifier.fillMaxSize().background(currentGradient).padding(24.dp)) {
+        Box(
+                modifier =
+                        Modifier.fillMaxWidth()
+                                .heightIn(min = 180.dp)
+                                .background(currentGradient)
+                                .padding(24.dp)
+        ) {
             Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.SpaceBetween
