@@ -193,12 +193,12 @@ fun ClienteItem(cliente: Cliente, index: Int) {
                                                 style = MaterialTheme.typography.bodySmall,
                                                 color = Color.White.copy(alpha = 0.8f)
                                         )
-                                        Text(
-                                                text = cliente.correo,
-                                                style = MaterialTheme.typography.bodyMedium,
-                                                color = Color.White,
-                                                fontWeight = FontWeight.Medium
-                                        )
+                                        // Text(
+                                        //         text = cliente.correo,
+                                        //         style = MaterialTheme.typography.bodyMedium,
+                                        //         color = Color.White,
+                                        //         fontWeight = FontWeight.Medium
+                                        // )
                                 }
                         }
                 }
