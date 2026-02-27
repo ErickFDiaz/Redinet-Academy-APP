@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
@@ -23,7 +25,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,7 +32,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.davidchura.sistema1076.model.Cliente
 import com.davidchura.sistema1076.pages.login.LoginViewModel
@@ -55,72 +58,77 @@ class LoginActivity : ComponentActivity() {
                 var dialogMessage by remember { mutableStateOf("") }
                 var isLoading by remember { mutableStateOf(false) }
 
-                Scaffold(modifier = Modifier.fillMaxSize()) {
-                     innerPadding ->
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(
-                        Modifier.fillMaxSize()
-                            .padding(innerPadding)
-                            .padding(horizontal = MaterialTheme.dimens.medium),
-
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
+                            Modifier.fillMaxSize()
+                                    .padding(innerPadding)
+                                    .padding(horizontal = MaterialTheme.dimens.medium),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        if (isLoading){
+                        Image(
+                                painter = painterResource(id = R.drawable.logo_academy),
+                                contentDescription = "Logo Redinet Academy",
+                                modifier = Modifier.size(150.dp).padding(bottom = 32.dp)
+                        )
+                        if (isLoading) {
                             CircularProgressIndicator()
                         } else {
                             OutlinedTextField(
-                                label = { Text(text = "Correo o Teléfono") },
-                                value = viewModel.correotelefono,
-                                onValueChange = { viewModel.correotelefono = it },
-                                modifier = Modifier.fillMaxWidth()
+                                    label = { Text(text = "Correo o Teléfono") },
+                                    value = viewModel.correotelefono,
+                                    onValueChange = { viewModel.correotelefono = it },
+                                    modifier = Modifier.fillMaxWidth()
                             )
                             Spacer(modifier = Modifier.height(MaterialTheme.dimens.small))
                             OutlinedTextField(
-                                label = { Text(text = "Contraseña") },
-                                value = viewModel.clave,
-                                onValueChange = { viewModel.clave = it },
-                                modifier = Modifier.fillMaxWidth(),
-                                visualTransformation = PasswordVisualTransformation()
+                                    label = { Text(text = "Contraseña") },
+                                    value = viewModel.clave,
+                                    onValueChange = { viewModel.clave = it },
+                                    modifier = Modifier.fillMaxWidth(),
+                                    visualTransformation = PasswordVisualTransformation()
                             )
                             Spacer(modifier = Modifier.height(MaterialTheme.dimens.small))
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Checkbox(
-                                    checked = viewModel.estadoCheck,
-                                    onCheckedChange = { viewModel.estadoCheck = it }
+                                        checked = viewModel.estadoCheck,
+                                        onCheckedChange = { viewModel.estadoCheck = it }
                                 )
                                 Text(text = "Guardar sesión")
                             }
                             Spacer(modifier = Modifier.height(MaterialTheme.dimens.small))
-                            Button(onClick = {
-                                isLoading = true
-                                scope.launch {
-                                    val respuesta = viewModel.realizarLogin()
-                                    val (message, success) = evaluarRespuesta(respuesta)
-                                    dialogMessage = message
-                                    showDialog = true
-                                    isLoading = false
-                                    if (success) {
-                                        startActivity(Intent(this@LoginActivity, InicioActivity::class.java))
-                                        finish()
+                            Button(
+                                    onClick = {
+                                        isLoading = true
+                                        scope.launch {
+                                            val respuesta = viewModel.realizarLogin()
+                                            val (message, success) = evaluarRespuesta(respuesta)
+                                            dialogMessage = message
+                                            showDialog = true
+                                            isLoading = false
+                                            if (success) {
+                                                startActivity(
+                                                        Intent(
+                                                                this@LoginActivity,
+                                                                InicioActivity::class.java
+                                                        )
+                                                )
+                                                finish()
+                                            }
+                                        }
                                     }
-                                }
-                            }) {
-                                Text("Iniciar sesión")
-                            }
+                            ) { Text("Iniciar sesión") }
                         }
-
                     }
                 }
                 if (showDialog) {
                     AlertDialog(
-                        onDismissRequest = { showDialog = false },
-                        title = { Text("Inicio de Sesión") },
-                        text = { Text(dialogMessage) },
-                        confirmButton = {
-                            TextButton(onClick = { showDialog = false }) {
-                                Text("Aceptar")
+                            onDismissRequest = { showDialog = false },
+                            title = { Text("Inicio de Sesión") },
+                            text = { Text(dialogMessage) },
+                            confirmButton = {
+                                TextButton(onClick = { showDialog = false }) { Text("Aceptar") }
                             }
-                        }
                     )
                 }
             }
@@ -136,9 +144,7 @@ class LoginActivity : ComponentActivity() {
                 clienteActivo = Gson().fromJson(respuesta, Array<Cliente>::class.java).first()
                 if (viewModel.estadoCheck) {
                     val userStore = UserStore(this)
-                    lifecycleScope.launch {
-                        userStore.guardarDatosUsuario(respuesta)
-                    }
+                    lifecycleScope.launch { userStore.guardarDatosUsuario(respuesta) }
                 }
                 "Bienvenido" to true
             }
