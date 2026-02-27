@@ -29,6 +29,7 @@ import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -86,6 +87,11 @@ class InicioActivity : ComponentActivity() {
                                         Icons.Filled.Notifications,
                                         Color(0xFFE91E63)
                                 ), // Pink
+                                MenuCardOpcion(
+                                        "Instructores",
+                                        Icons.Filled.Star,
+                                        Color(0xFF00BCD4)
+                                ), // Cyan
                                 MenuCardOpcion(
                                         "Salir",
                                         Icons.Filled.Close,
@@ -207,6 +213,17 @@ class InicioActivity : ComponentActivity() {
                                                                                                 )
                                                                                         )
                                                                                 )
+                                                                        "Instructores" ->
+                                                                                Brush.linearGradient(
+                                                                                        listOf(
+                                                                                                Color(
+                                                                                                        0xFF00BCD4
+                                                                                                ),
+                                                                                                Color(
+                                                                                                        0xFF0097A7
+                                                                                                )
+                                                                                        )
+                                                                                )
                                                                         else ->
                                                                                 Brush.linearGradient(
                                                                                         listOf(
@@ -308,7 +325,16 @@ class InicioActivity : ComponentActivity() {
                         2 -> startActivity(Intent(this, TiendaActivity::class.java))
                         3 -> startActivity(Intent(this, ClientesActivity::class.java))
                         4 -> startActivity(Intent(this, DirectoresActivity::class.java))
-                        5 -> finish()
+                        5 ->
+                                startActivity(
+                                        Intent(
+                                                this,
+                                                com.davidchura.sistema1076.pages
+                                                                .InstructoresActivity::class
+                                                        .java
+                                        )
+                                )
+                        6 -> finish()
                 }
         }
 }

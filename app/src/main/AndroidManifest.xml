@@ -78,6 +78,16 @@
             android:label="@string/title_activity_onboarding"
             android:theme="@style/Theme.Sistema1076" />
         <activity
+            android:name=".pages.InstructoresActivity"
+            android:exported="false"
+            android:label="Instructores"
+            android:theme="@style/Theme.Sistema1076" />
+        <activity
+            android:name=".pages.CursosActivity"
+            android:exported="false"
+            android:label="Cursos"
+            android:theme="@style/Theme.Sistema1076" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.Sistema1076" />
